@@ -1,0 +1,24 @@
+<!
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo - {{title}}</title>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="bg-gray-100">
+<div class="container mx-auto p-6">
+    <div class="flex justify-between items-center mb-6">
+        <a href="{{url_for('home')}}"><h1 class="text-4xl font-bold text-indigo-600">To-Do List</h1></a>
+        <a href="{{url_for('create')}}" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+            + Create New To-Do
+        </a>
+    </div>
+    {% block content %}{% endblock %}
+
+</div>
+</body>
+
+</html>

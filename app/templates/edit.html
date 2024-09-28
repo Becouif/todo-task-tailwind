@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1  class="text-2xl font-bold text-center mb-4 text-gray-800">Edit Todo</h1>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+        <div class="mb-4">
+            {{form.task.label(class_='block text-lg font-semibold text-gray-700 mb-2')}}<br>
+            {{form.task(size=32,class_='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-pink-300 focus:outline-none')}}
+
+            {% for errors in form.task.errors %}
+            <span class="text-red-500 text-sm mt-1">{{errors}}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-4">
+            {{form.priority.label(class_="block text-lg font-semibold text-gray-700 mb-2")}}<br>
+            {{form.priority(class_="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:ring focus:ring-blue-300 focus:outline-none")}}
+
+            {% for errors in form.priority.errors %}
+            <span class="text-red-500 text-sm mt-1">{{errors}}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-4">
+            {{form.status.label(class_="block text-lg font-semibold text-gray-700 mb-2")}}<br>
+            {{form.status(class_="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:ring focus:ring-blue-300 focus:outline-none")}}
+
+            {% for error in form.status.errors %}
+            <span class="text-red-500 text-sm mt-1">{{error}}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-4">
+            {{form.submit(class_="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75")}}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

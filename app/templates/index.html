@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+    <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+        <thead class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white">
+            <tr>
+                <th class="py-3 px-4 text-left uppercase font-semibold text-sm">Task</th>
+                <th class="py-3 px-4 text-left uppercase font-semibold text-sm">Priority</th>
+                <th class="py-3 px-4 text-left uppercase font-semibold text-sm">Status</th>
+                <th class="py-3 px-4 text-left uppercase font-semibold text-sm">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            {% if todos %}
+            {% for todo in todos %}
+            <tr class="border-t">
+                <td class="py-4 px-6">{{todo.task}}</td>
+                <td class="py-4 px-6">
+                    {% if todo.priority == 'high' %}
+                    <span class="text-white bg-red-500 py-1 px-3 rounded-full text-xs">{{todo.priority}}</span>
+                    {% elif todo.priority == 'medium' %}
+                    <span class="text-white bg-yellow-500 py-1 px-3 rounded-full text-xs">Medium</span>
+                    {% else %}
+                    <span class="text-white bg-green-500 py-1 px-3 rounded-full text-xs">Low</span>
+                    {% endif %}
+
+
+                </td>
+                <td class="py-4 px-6">
+                    {% if todo.status == 'completed' %}
+                    <span class="text-red-500 font-semibold">{{todo.status}}</span>
+                    {% elif todo.status == 'in progress' %}
+                    <span class="text-green-500 font-semibold">{{todo.status}}</span>
+                    {% else %}
+                    <span class="text-orange-500 font-semibold">{{todo.status}}</span>
+                    {% endif %}
+                </td>
+                <td class="py-4 px-6">
+                    <a href="{{url_for('edit',id=todo.id)}}" class="text-blue-500 py-1 px-3 rounded-full text-sm">Edit</a>
+                    <form action="{{url_for('delete',id=todo.id)}}" method="POST" style="display: inline">
+                        {{form.hidden_tag()}}
+                        <button class=" text-red-500 py-1 px-3 rounded-full text-sm">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td class="py-4 px-6">No todos</td>
+            </tr>
+            {% endif %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
